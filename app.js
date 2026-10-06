@@ -5,6 +5,7 @@ const idioma = document.getElementById("idioma");
 const conexion = document.getElementById("conexion");
 const idCliente = document.getElementById("idCliente");
 const fecha = document.getElementById("fecha");
+const prendasRegalo = document.getElementById("prendasRegalo");
 
 //Sacar usuario y rol de la url - ?usuario=Erika&rol=Cliente
 const parametros = new URLSearchParams(window.location.search);
@@ -41,3 +42,25 @@ const fechaActual = new Date().toLocaleDateString("es-ES", {
     day: "numeric"   
 });
 fecha.textContent = "Fecha: " + fechaActual;
+
+//Cliente VIP, membresía, prendas regalo y correo
+let cantidadRegalos;//Prueba: si no hay valor asigna 2, pero si es 0 lo respeta
+const regalo = cantidadRegalos ?? 2;
+console.log("Prendas regalo:", regalo);
+
+//?usuario=Erika&rol=cliente&apodo=Eri
+const apodoURL = parametros.get("apodo");
+const apodo = apodoURL || "Cliente VIP";
+tipoCliente.textContent = "Apodo: " + apodo;
+
+let correo = "  ErikaStancicu@GMAIL.COM.   ";
+const correoLimpio = correo.trim().toLowerCase(); 
+//.trim() elimina espacios del principio y del final
+//.toLowerCase() convierte todo a minúsculas
+const correoFinal = correoLimpio.split("@");
+console.log("Usuario correo: ", correoFinal[0]);
+console.log("Dominio correo: ", correoFinal[1]);
+
+let membresia;
+const membresiaFinal = membresia ?? "Básica";
+console.log("Membresía: ", membresiaFinal);
