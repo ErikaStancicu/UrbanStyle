@@ -72,6 +72,13 @@ console.log("Membresía: ", membresiaFinal);
 
 const btnOferta = document.getElementById("btnOferta");
 const contadorOferta = document.getElementById("contadorOferta");
+const pedido = document.getElementById("pedido");
+const subTotal= document.getElementById("subtotal");
+const descuentoTotal= document.getElementById("descuento");
+const ivaTotal = document.getElementById("iva");
+const Total = document.getElementById("total");
+
+//OFERTA
 
 btnOferta.addEventListener("click", function() {
 
@@ -96,3 +103,36 @@ btnOferta.addEventListener("click", function() {
     }, 1000);
 });
 
+//CARRITO
+
+const precioChaqueta = "59.90€"; //texto
+const precioCamiseta = "19.99€";
+const cupon = "10";
+
+
+const chaquetaNumero = parseFloat(precioChaqueta); //numero decimales
+const camisetaNumero = parseFloat(precioCamiseta); 
+const descuento = parseFloat(cupon);
+
+const subtotal = chaquetaNumero + camisetaNumero;
+const baseImponible = subtotal - descuento;
+const iva = baseImponible * 0.21;
+const total = baseImponible + iva;
+
+let idPedido = 1000;
+idPedido++;
+pedido.textContent = "Nº de pedido: " + idPedido;
+
+const formatoEuro = new Intl.NumberFormat("es-ES", { //Formatea los números al formato de moneda española (€)
+    style: "currency",
+    currency: "EUR"
+});
+
+if (Number.isFinite(subtotal)) {
+    subTotal.textContent = "Subtotal: " + formatoEuro.format(subtotal);
+    descuentoTotal.textContent = "Descuento: " + formatoEuro.format(descuento);
+    ivaTotal.textContent = "IVA (21%): " + formatoEuro.format(iva);
+    Total.textContent = "Total a pagar: " + formatoEuro.format(total);
+} else {
+    subTotal.textContent = "Error al calcular el subtotal";
+}
