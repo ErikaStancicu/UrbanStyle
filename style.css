@@ -1,0 +1,134 @@
+/*GENERAL*/
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff9f5;
+    color: #333;
+}
+
+
+/*CABECERA*/
+header {
+    background-color: #f5dfe5;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+header h3 {
+    margin-bottom: 10px;
+}
+
+header p {
+    margin: 5px;
+}
+
+
+/*CONTENIDO PRINCIPAL*/
+main {
+    width: 80%;
+    margin: 30px auto;
+}
+
+
+/*SECCIONES*/
+section {
+    background-color: white;
+    margin-bottom: 25px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+section h2 {
+    text-align: center;
+}
+
+
+/*OFERTA*/
+#oferta {
+    background-color: #fbe9df;
+    text-align: center;
+}
+
+#oferta p {
+    font-weight: bold;
+}
+
+
+/*BOTONES*/
+button {
+    background-color: #d9b8c4;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #cba5b3;
+}
+
+
+/*CATÁLOGO*/
+#catalogo {
+    text-align: center;
+}
+
+#catalogo div {
+    display: inline-block;
+    background-color: #faf1ed;
+    width: 35%;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+/*CARRITO*/
+#carrito {
+    background-color: #f4eeee;
+}
+
+#carrito p {
+    padding: 5px;
+}
+
+#total {
+    font-weight: bold;
+}
+
+
+/*OPINIONES*/
+#opiniones {
+    background-color: #fff;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+textarea {
+    padding: 10px;
+    border: 1px solid #d8caca;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+form button {
+    width: 160px;
+}
+
+
+/*RESEÑAS PUBLICADAS*/
+#listaOpiniones div {
+    background-color: #faf1ed;
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 8px;
+}
