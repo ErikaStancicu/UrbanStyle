@@ -1,3 +1,5 @@
+'use strict';
+
 const usuario = document.getElementById("usuario");
 const tipoCliente = document.getElementById("tipoCliente");
 const rol = document.getElementById("rol");
@@ -5,7 +7,6 @@ const idioma = document.getElementById("idioma");
 const conexion = document.getElementById("conexion");
 const idCliente = document.getElementById("idCliente");
 const fecha = document.getElementById("fecha");
-const prendasRegalo = document.getElementById("prendasRegalo");
 
 //HEADER
 
@@ -55,7 +56,7 @@ const apodoURL = parametros.get("apodo");
 const apodo = apodoURL || "Cliente VIP";
 tipoCliente.textContent = "Apodo: " + apodo;
 
-let correo = "  ErikaStancicu@GMAIL.COM.   ";
+let correo = "  ErikaStancicu@GMAIL.COM   ";
 const correoLimpio = correo.trim().toLowerCase(); 
 //.trim() elimina espacios del principio y del final
 //.toLowerCase() convierte todo a minúsculas
@@ -136,3 +137,74 @@ if (Number.isFinite(subtotal)) {
 } else {
     subTotal.textContent = "Error al calcular el subtotal";
 }
+
+
+//RESEÑAS 
+
+const formOpinion = document.getElementById("formOpinion");
+const comentario = document.getElementById("comentario");
+const listaOpiniones = document.getElementById("listaOpiniones");
+
+let opiniones = [];
+
+try { //Recupera las opiniones guardadas al cargar la página
+    const opinionesGuardadas = localStorage.getItem("opiniones"); //Recupera del navegador las opiniones guardadas como texto
+
+    if (opinionesGuardadas) { //Comprueba si existen opiniones guardadas
+        opiniones = JSON.parse(opinionesGuardadas); //Convierte el texto guardado de nuevo en un array de JS
+    }
+} catch (error) {
+    opiniones = []; //Si ocurre un error, deja el array vacío
+}
+
+function mostrarOpiniones() { //Muestra las opiniones en la página
+
+    listaOpiniones.textContent = ""; //Limpia visualmente la lista para evitar duplicados
+
+    opiniones.forEach(function(opinion) {
+
+        const div = document.createElement("div");
+        const usuario = document.createElement("p");
+        const fecha = document.createElement("p");
+        const texto = document.createElement("p");
+
+        usuario.textContent = "Usuario: " + opinion.usuario;
+        fecha.textContent = "Publicado: " + opinion.fecha;
+        texto.textContent = opinion.comentario;
+
+        div.appendChild(usuario); //se añaden dentro del div
+        div.appendChild(fecha);
+        div.appendChild(texto);
+
+        listaOpiniones.appendChild(div); //Añade la opinión completa a la página
+    });
+}
+
+formOpinion.addEventListener("submit", function(event) { //Publica una nueva opinión
+
+    event.preventDefault(); //Evita el comportamiento normal del formulario y que recargue la página
+
+    const nuevaOpinion = {
+        id: Date.now(),
+        usuario: usuarioURL,
+        fecha: new Date().toLocaleString("es-ES"),
+        comentario: comentario.value
+    };
+
+    opiniones.push(nuevaOpinion); //Añade la nueva opinión al array
+
+    try { //Guarda todas las opiniones en el navegador
+        localStorage.setItem("opiniones", JSON.stringify(opiniones)); //Convierte el array a texto y lo guarda
+    } catch (error) {
+        alert("No se pudo guardar la opinión"); //Avisa si ocurre un error al guardar
+    }
+
+    mostrarOpiniones(); //Actualiza la página para mostrar también la nueva opinión
+
+    comentario.value = ""; //Vacía el cuadro después de publicar
+});
+
+mostrarOpiniones(); //Muestra las opiniones guardadas al entrar en la página
+
+
+//localStorage.removeItem("opiniones");

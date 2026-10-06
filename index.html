@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
    <header>
         <h1>URBAN STYLE</h1>
     
@@ -23,22 +22,24 @@
         <p id="conexion"></p>
         <p id="idCliente"></p>
         <p id="fecha"></p>
-        <p id="prendasRegalo"></p>
     </header>
 
     <main>
         <section id="oferta">
             <p>⚡️ OFERTA RELÁMPAGO ⚡️</p>
+
             <button id ="btnOferta">¡ACTIVAR OFERTA!</button>
             <p id="contadorOferta"></p>
         </section>
 
         <section id="catalogo">
             <h2>Catálogo</h2>
+
             <div>
                 <h3>Chaqueta Denim</h3>
                 <p>59,90 €</p>
             </div>
+
             <div>
                 <h3>Camiseta Urban</h3>
                 <p>19,99 €</p>
@@ -47,6 +48,7 @@
 
         <section id="carrito">
             <h2>Carrito</h2>
+
             <p id="pedido"></p>
             <p id="subtotal"></p>
             <p id="descuento"></p>
@@ -55,14 +57,16 @@
         </section>
 
         <section id="opiniones">
-        <!-- Escribir reseña, Publicar, Reseñas guardadas-->
+            <h2>Opiniones</h2>
+
+            <form id="formOpinion">
+                <label for="comentario">Escribe tu opinión:</label>
+                <textarea id="comentario" required></textarea>
+                <button type="submit">Publicar opinión</button>
+            </form>
+
+            <div id="listaOpiniones"></div>
         </section>
     </main>
-
-    <footer>
-
-    </footer>
-
 </body>
-
 </html>
