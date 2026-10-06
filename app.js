@@ -7,6 +7,8 @@ const idCliente = document.getElementById("idCliente");
 const fecha = document.getElementById("fecha");
 const prendasRegalo = document.getElementById("prendasRegalo");
 
+//HEADER
+
 //Sacar usuario y rol de la url - ?usuario=Erika&rol=Cliente
 const parametros = new URLSearchParams(window.location.search);
 
@@ -64,3 +66,33 @@ console.log("Dominio correo: ", correoFinal[1]);
 let membresia;
 const membresiaFinal = membresia ?? "Básica";
 console.log("Membresía: ", membresiaFinal);
+
+
+//BODY
+
+const btnOferta = document.getElementById("btnOferta");
+const contadorOferta = document.getElementById("contadorOferta");
+
+btnOferta.addEventListener("click", function() {
+
+    btnOferta.textContent = "¡OFERTA ACTIVADA!";
+    btnOferta.disabled = true;//Activa la oferta y desactiva el botón para evitar varios contadores
+
+    let segundos = 15;
+    contadorOferta.textContent = "Tiempo restante: " + segundos + " segundos";
+
+    //Actualiza el contador cada segundo
+    const intervalo = setInterval(function() {
+        segundos--;
+        contadorOferta.textContent = "Tiempo restante: " + segundos + " segundos";
+
+        //Cuando llega a 0, detiene el contador y finaliza la oferta
+        if (segundos === 0) {
+            clearInterval(intervalo);
+            contadorOferta.textContent = "¡OFERTA EXPIRADA!";
+            btnOferta.textContent = "¡ACTIVAR OFERTA!";
+            btnOferta.disabled = false;
+        }
+    }, 1000);
+});
+
